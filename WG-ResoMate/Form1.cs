@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -118,6 +120,27 @@ namespace WG_ResoMate
         private void btn4K_Click(object sender, EventArgs e)
         {
             ChangeResolution(3840, 2160); // Change resolution to 3840x2160 (4K)
+        }
+
+        private void footer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Dynamically set the footer text
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            labelFooter.Text = $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved";
+        }
+
+        private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the AboutForm
+            AboutForm aboutForm = new AboutForm();
+
+            // Show the AboutForm as a dialog
+            aboutForm.ShowDialog();
         }
     }
 }
