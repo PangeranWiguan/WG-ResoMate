@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System.Linq;
 
 namespace WG_ResoMate
 {
@@ -134,11 +135,11 @@ namespace WG_ResoMate
                 int result = ChangeDisplaySettings(ref dm, CDS_UPDATEREGISTRY);
                 if (result == DISP_CHANGE_SUCCESSFUL)
                 {
-                    MessageBox.Show("Resolution changed successfully.");
+                    ShowToastNotification("Success", "Resolution changed successfully.");
                 }
                 else
                 {
-                    MessageBox.Show("Failed to change resolution.");
+                    ShowToastNotification("Error", "Failed to change resolution.");
                 }
             }
         }
@@ -153,13 +154,13 @@ namespace WG_ResoMate
             if (targetResolution == "1080p")
             {
                 ChangeResolution(1920, 1080); // Change resolution to 1920x1080
-                MessageBox.Show("Resolution set to 1080p.");
+                ShowToastNotification("Success", "Resolution set to 1080p.");
                 UpdateButton("1920x1080"); // Simulate resolution change to 1080p
             }
             else if (targetResolution == "4K")
             {
                 ChangeResolution(3840, 2160); // Change resolution to 3840x2160 (4K)
-                MessageBox.Show("Resolution set to 4K.");
+                ShowToastNotification("Success", "Resolution set to 4K.");
                 UpdateButton("3840x2160"); // Simulate resolution change to 4K
             }
 
@@ -192,27 +193,29 @@ namespace WG_ResoMate
             {
                 ThemeManager.ApplyDarkMode(this); // Apply to the entire form
                 ToggleTheme.Text = "Switch to Light Mode";
+                ShowToastNotification("Dark Mode", "WG-ResoMate switched to Dark Mode.");
             }
             else
             {
                 ThemeManager.ApplyLightMode(this); // Apply to the entire form
                 ToggleTheme.Text = "Switch to Dark Mode";
+                ShowToastNotification("Light Mode", "WG-ResoMate switched to Light Mode.");
             }
 
             // Save the preference
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
 
-            ShowToastNotification("Hello!", "This is a toast notification.");
         }
 
+        // Show Notification at Windows Notification.
+        // Less distrubtion that Show Message Box.
         private void ShowToastNotification(string title, string message)
         {
-            // Create a toast notification
             new ToastContentBuilder()
-                .AddText(title)
-                .AddText(message)
-                .Show();
+                .AddText(title) // Title of the notification
+                .AddText(message) // Message body (limited to 2 lines)
+                .Show(); // Display the notification
         }
 
         // Import necessary Windows API functions for changing display settings
