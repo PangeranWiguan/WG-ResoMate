@@ -14,7 +14,7 @@ namespace WG_ResoMate
 
         private bool isDarkMode = false; // Track the current theme state
         // Use the fully qualified name to avoid ambiguity
-        private System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+        private readonly System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
 
         // Constructor for the form
         public Form1()
@@ -118,8 +118,10 @@ namespace WG_ResoMate
         /// </summary>
         private void ChangeResolution(int width, int height)
         {
-            DEVMODE dm = new DEVMODE(); // Create a new DEVMODE structure
-            dm.dmSize = (short)Marshal.SizeOf(typeof(DEVMODE)); // Set the size of the structure
+            DEVMODE dm = new DEVMODE
+            {
+                dmSize = (short)Marshal.SizeOf(typeof(DEVMODE)) // Set the size of the structure
+            };
 
             // Retrieve the current display settings
             if (EnumDisplaySettings(null, ENUM_CURRENT_SETTINGS, ref dm) != 0)
