@@ -29,80 +29,135 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btn1080p = new System.Windows.Forms.Button();
-            this.btn4K = new System.Windows.Forms.Button();
+            this.Button1080p = new System.Windows.Forms.Button();
+            this.Button4K = new System.Windows.Forms.Button();
             this.labelFooter = new System.Windows.Forms.Label();
-            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.mainMenuStrip.SuspendLayout();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.ToolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToggleTheme = new System.Windows.Forms.ToolStripMenuItem();
+            this.LabelNativeResolution = new System.Windows.Forms.Label();
+            this.LabelDisplayResolution = new System.Windows.Forms.Label();
+            this.LabelDisplayScaling = new System.Windows.Forms.Label();
+            this.ButtonChangeRes = new System.Windows.Forms.Button();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btn1080p
+            // Button1080p
             // 
-            this.btn1080p.Location = new System.Drawing.Point(133, 199);
-            this.btn1080p.Margin = new System.Windows.Forms.Padding(4);
-            this.btn1080p.Name = "btn1080p";
-            this.btn1080p.Size = new System.Drawing.Size(267, 150);
-            this.btn1080p.TabIndex = 0;
-            this.btn1080p.Text = "Set to 1080p Resolution\r\n(1920 x 1080 pixels)";
-            this.btn1080p.UseVisualStyleBackColor = true;
-            this.btn1080p.Click += new System.EventHandler(this.btn1080p_Click);
+            this.Button1080p.Location = new System.Drawing.Point(114, 284);
+            this.Button1080p.Name = "Button1080p";
+            this.Button1080p.Size = new System.Drawing.Size(200, 122);
+            this.Button1080p.TabIndex = 0;
+            this.Button1080p.Text = "Set to 1080p Resolution\r\n(1920 x 1080 pixels)";
+            this.Button1080p.UseVisualStyleBackColor = true;
             // 
-            // btn4K
+            // Button4K
             // 
-            this.btn4K.Location = new System.Drawing.Point(480, 124);
-            this.btn4K.Margin = new System.Windows.Forms.Padding(4);
-            this.btn4K.Name = "btn4K";
-            this.btn4K.Size = new System.Drawing.Size(533, 300);
-            this.btn4K.TabIndex = 1;
-            this.btn4K.Text = "Set to 4K Resolution.\r\n(3840 x 2160 pixels)";
-            this.btn4K.UseVisualStyleBackColor = true;
-            this.btn4K.Click += new System.EventHandler(this.btn4K_Click);
+            this.Button4K.Location = new System.Drawing.Point(365, 172);
+            this.Button4K.Name = "Button4K";
+            this.Button4K.Size = new System.Drawing.Size(400, 244);
+            this.Button4K.TabIndex = 1;
+            this.Button4K.Text = "Set to 4K Resolution.\r\n(3840 x 2160 pixels)";
+            this.Button4K.UseVisualStyleBackColor = true;
             // 
             // labelFooter
             // 
             this.labelFooter.AutoSize = true;
-            this.labelFooter.Location = new System.Drawing.Point(12, 529);
+            this.labelFooter.Location = new System.Drawing.Point(9, 430);
+            this.labelFooter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFooter.Name = "labelFooter";
-            this.labelFooter.Size = new System.Drawing.Size(349, 16);
+            this.labelFooter.Size = new System.Drawing.Size(325, 15);
             this.labelFooter.TabIndex = 2;
             this.labelFooter.Text = "Version 1.0 - © 2025 Pangeran Wiguan. All rights reserved.";
             // 
-            // mainMenuStrip
+            // MenuStrip
             // 
-            this.mainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemAbout});
-            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(1067, 28);
-            this.mainMenuStrip.TabIndex = 3;
-            this.mainMenuStrip.Text = "Main Menu";
+            this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemAbout,
+            this.ToggleTheme});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MenuStrip.Size = new System.Drawing.Size(800, 28);
+            this.MenuStrip.TabIndex = 3;
+            this.MenuStrip.Text = "Main Menu";
             // 
-            // toolStripMenuItemAbout
+            // ToolStripMenuItemAbout
             // 
-            this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
-            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(64, 24);
-            this.toolStripMenuItemAbout.Text = "About";
-            this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
+            this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(64, 24);
+            this.ToolStripMenuItemAbout.Text = "About";
+            this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
+            // 
+            // ToggleTheme
+            // 
+            this.ToggleTheme.Name = "ToggleTheme";
+            this.ToggleTheme.Size = new System.Drawing.Size(118, 24);
+            this.ToggleTheme.Text = "Toggle Theme";
+            this.ToggleTheme.Click += new System.EventHandler(this.ToggleTheme_Click);
+            // 
+            // LabelNativeResolution
+            // 
+            this.LabelNativeResolution.AutoSize = true;
+            this.LabelNativeResolution.Location = new System.Drawing.Point(29, 55);
+            this.LabelNativeResolution.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelNativeResolution.Name = "LabelNativeResolution";
+            this.LabelNativeResolution.Size = new System.Drawing.Size(103, 15);
+            this.LabelNativeResolution.TabIndex = 4;
+            this.LabelNativeResolution.Text = "Native Resolution";
+            // 
+            // LabelDisplayResolution
+            // 
+            this.LabelDisplayResolution.AutoSize = true;
+            this.LabelDisplayResolution.Location = new System.Drawing.Point(32, 84);
+            this.LabelDisplayResolution.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelDisplayResolution.Name = "LabelDisplayResolution";
+            this.LabelDisplayResolution.Size = new System.Drawing.Size(109, 15);
+            this.LabelDisplayResolution.TabIndex = 5;
+            this.LabelDisplayResolution.Text = "Display Resolution";
+            // 
+            // LabelDisplayScaling
+            // 
+            this.LabelDisplayScaling.AutoSize = true;
+            this.LabelDisplayScaling.Location = new System.Drawing.Point(32, 117);
+            this.LabelDisplayScaling.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelDisplayScaling.Name = "LabelDisplayScaling";
+            this.LabelDisplayScaling.Size = new System.Drawing.Size(91, 15);
+            this.LabelDisplayScaling.TabIndex = 6;
+            this.LabelDisplayScaling.Text = "Display Scaling";
+            // 
+            // ButtonChangeRes
+            // 
+            this.ButtonChangeRes.Location = new System.Drawing.Point(114, 145);
+            this.ButtonChangeRes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ButtonChangeRes.Name = "ButtonChangeRes";
+            this.ButtonChangeRes.Size = new System.Drawing.Size(200, 122);
+            this.ButtonChangeRes.TabIndex = 7;
+            this.ButtonChangeRes.Text = "Change Resolution";
+            this.ButtonChangeRes.UseVisualStyleBackColor = true;
+            this.ButtonChangeRes.Click += new System.EventHandler(this.ButtonChangeRes_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ButtonChangeRes);
+            this.Controls.Add(this.LabelDisplayScaling);
+            this.Controls.Add(this.LabelDisplayResolution);
+            this.Controls.Add(this.LabelNativeResolution);
             this.Controls.Add(this.labelFooter);
-            this.Controls.Add(this.btn4K);
-            this.Controls.Add(this.btn1080p);
-            this.Controls.Add(this.mainMenuStrip);
+            this.Controls.Add(this.Button4K);
+            this.Controls.Add(this.Button1080p);
+            this.Controls.Add(this.MenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.mainMenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "Form1";
             this.Text = "WG-ResoMate";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.mainMenuStrip.ResumeLayout(false);
-            this.mainMenuStrip.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,11 +165,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn1080p;
-        private System.Windows.Forms.Button btn4K;
+        private System.Windows.Forms.Button Button1080p;
+        private System.Windows.Forms.Button Button4K;
         private System.Windows.Forms.Label labelFooter;
-        private System.Windows.Forms.MenuStrip mainMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAbout;
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbout;
+        private System.Windows.Forms.ToolStripMenuItem ToggleTheme;
+        private System.Windows.Forms.Label LabelNativeResolution;
+        private System.Windows.Forms.Label LabelDisplayResolution;
+        private System.Windows.Forms.Label LabelDisplayScaling;
+        private System.Windows.Forms.Button ButtonChangeRes;
     }
 }
 

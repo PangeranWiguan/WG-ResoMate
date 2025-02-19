@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace WG_ResoMate
@@ -17,6 +12,18 @@ namespace WG_ResoMate
         {
             InitializeComponent();
             LoadAssemblyInformation();
+
+            ///Theme Manager
+            bool isDarkMode = Properties.Settings.Default.IsDarkMode;
+
+            if (isDarkMode)
+            {
+                ThemeManager.ApplyDarkMode(this);
+            }
+            else
+            {
+                ThemeManager.ApplyLightMode(this);
+            }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
