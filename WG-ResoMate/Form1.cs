@@ -43,12 +43,9 @@ namespace WG_ResoMate
             string nativeResolution = DisplayInfo.GetNativeResolution();
             LabelNativeResolution.Text = $"Native Resolution: {nativeResolution}";
 
-            // Update current resolution and scaling
-            var (currentResolution, _) = DisplayInfo.GetCurrentResolutionAndScaling();
-            double scaling = DisplayInfo.GetPrimaryMonitorScaling();
-
+            // Update current resolution
+            string currentResolution = DisplayInfo.GetCurrentResolution();
             LabelDisplayResolution.Text = $"Current Resolution: {currentResolution}";
-            LabelDisplayScaling.Text = $"Scaling: {scaling}%";
 
             // Update the dynamic button
             UpdateButton(currentResolution);
@@ -152,7 +149,7 @@ namespace WG_ResoMate
             }
 
             // Update the current resolution label
-            var (currentResolution, _) = DisplayInfo.GetCurrentResolutionAndScaling();
+            var currentResolution = DisplayInfo.GetCurrentResolution();
             LabelDisplayResolution.Text = $"Current Resolution: {currentResolution}";
         }
 

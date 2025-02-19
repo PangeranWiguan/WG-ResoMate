@@ -9,30 +9,8 @@ namespace WG_ResoMate
         [DllImport("user32.dll")]
         private static extern bool EnumDisplaySettings(string deviceName, int modeNum, ref DEVMODE devMode);
 
-        [DllImport("Shcore.dll", SetLastError = true)]
-        private static extern int GetScaleFactorForMonitor(IntPtr hmonitor, out uint scaleFactor);
-
-        [DllImport("Shcore.dll", SetLastError = true)]
-        private static extern int GetDpiForMonitor(IntPtr hmonitor, MONITOR_DPI_TYPE dpiType, out uint dpiX, out uint dpiY);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
-
         // Constants for EnumDisplaySettings
         private const int ENUM_CURRENT_SETTINGS = -1;
-        private const int ENUM_REGISTRY_SETTINGS = -2;
-
-        // Constants for MonitorFromWindow
-        private const uint MONITOR_DEFAULTTOPRIMARY = 0x00000001;
-
-        // Enum for DPI type
-        private enum MONITOR_DPI_TYPE
-        {
-            MDT_Effective_DPI = 0,
-            MDT_Angular_DPI = 1,
-            MDT_Raw_DPI = 2,
-            MDT_Default = MDT_Effective_DPI
-        }
 
         // Structure to hold display settings
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -104,9 +82,9 @@ namespace WG_ResoMate
         }
 
         /// <summary>
-        /// Gets the current resolution and scaling factor of the primary monitor.
+        /// Gets the current resolution of the primary monitor.
         /// </summary>
-        public static (string resolution, double scaling) GetCurrentResolutionAndScaling()
+        public static string GetCurrentResolution()
         {
             DEVMODE devMode = new DEVMODE();
             devMode.dmSize = (short)Marshal.SizeOf(devMode);
@@ -116,39 +94,10 @@ namespace WG_ResoMate
                 int width = devMode.dmPelsWidth;
                 int height = devMode.dmPelsHeight;
 
-                // Calculate scaling percentage using GetPrimaryMonitorScaling
-                double scaling = GetPrimaryMonitorScaling();
-
-                return ($"{width}x{height}", scaling);
+                return $"{width}x{height}";
             }
 
-            return ("Unknown", 100.0);
-        }
-
-        /// <summary>
-        /// Gets the scaling percentage for the primary monitor.
-        /// </summary>
-        public static double GetPrimaryMonitorScaling()
-        {
-            IntPtr monitor = MonitorFromWindow(IntPtr.Zero, MONITOR_DEFAULTTOPRIMARY);
-            if (monitor != IntPtr.Zero)
-            {
-                // Try using GetScaleFactorForMonitor first
-                int result = GetScaleFactorForMonitor(monitor, out uint scaleFactor);
-                if (result == 0) // Success
-                {
-                    return scaleFactor; // Return the scaling factor directly (e.g., 100, 125, 150)
-                }
-
-                // Fallback to DPI-based calculation
-                if (GetDpiForMonitor(monitor, MONITOR_DPI_TYPE.MDT_Default, out uint dpiX, out uint _) == 0)
-                {
-                    double scaling = Math.Round((dpiX / 96.0) * 100, 2); // Base DPI is 96
-                    return scaling;
-                }
-            }
-
-            return 100.0; // Default scaling if unable to retrieve scale factor
+            return "Unknown";
         }
     }
 }

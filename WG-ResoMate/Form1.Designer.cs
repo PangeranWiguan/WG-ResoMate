@@ -37,7 +37,6 @@
             this.ToggleTheme = new System.Windows.Forms.ToolStripMenuItem();
             this.LabelNativeResolution = new System.Windows.Forms.Label();
             this.LabelDisplayResolution = new System.Windows.Forms.Label();
-            this.LabelDisplayScaling = new System.Windows.Forms.Label();
             this.ButtonChangeRes = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -79,28 +78,28 @@
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.MenuStrip.Size = new System.Drawing.Size(800, 28);
+            this.MenuStrip.Size = new System.Drawing.Size(800, 30);
             this.MenuStrip.TabIndex = 3;
             this.MenuStrip.Text = "Main Menu";
             // 
             // ToolStripMenuItemAbout
             // 
             this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
-            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(64, 24);
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(64, 26);
             this.ToolStripMenuItemAbout.Text = "About";
             this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
             // ToggleTheme
             // 
             this.ToggleTheme.Name = "ToggleTheme";
-            this.ToggleTheme.Size = new System.Drawing.Size(118, 24);
+            this.ToggleTheme.Size = new System.Drawing.Size(118, 26);
             this.ToggleTheme.Text = "Toggle Theme";
             this.ToggleTheme.Click += new System.EventHandler(this.ToggleTheme_Click);
             // 
             // LabelNativeResolution
             // 
             this.LabelNativeResolution.AutoSize = true;
-            this.LabelNativeResolution.Location = new System.Drawing.Point(29, 55);
+            this.LabelNativeResolution.Location = new System.Drawing.Point(9, 39);
             this.LabelNativeResolution.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelNativeResolution.Name = "LabelNativeResolution";
             this.LabelNativeResolution.Size = new System.Drawing.Size(103, 15);
@@ -110,27 +109,17 @@
             // LabelDisplayResolution
             // 
             this.LabelDisplayResolution.AutoSize = true;
-            this.LabelDisplayResolution.Location = new System.Drawing.Point(32, 84);
+            this.LabelDisplayResolution.Location = new System.Drawing.Point(14, 69);
             this.LabelDisplayResolution.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelDisplayResolution.Name = "LabelDisplayResolution";
             this.LabelDisplayResolution.Size = new System.Drawing.Size(109, 15);
             this.LabelDisplayResolution.TabIndex = 5;
             this.LabelDisplayResolution.Text = "Display Resolution";
             // 
-            // LabelDisplayScaling
-            // 
-            this.LabelDisplayScaling.AutoSize = true;
-            this.LabelDisplayScaling.Location = new System.Drawing.Point(32, 117);
-            this.LabelDisplayScaling.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LabelDisplayScaling.Name = "LabelDisplayScaling";
-            this.LabelDisplayScaling.Size = new System.Drawing.Size(91, 15);
-            this.LabelDisplayScaling.TabIndex = 6;
-            this.LabelDisplayScaling.Text = "Display Scaling";
-            // 
             // ButtonChangeRes
             // 
             this.ButtonChangeRes.Location = new System.Drawing.Point(114, 145);
-            this.ButtonChangeRes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ButtonChangeRes.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonChangeRes.Name = "ButtonChangeRes";
             this.ButtonChangeRes.Size = new System.Drawing.Size(200, 122);
             this.ButtonChangeRes.TabIndex = 7;
@@ -144,7 +133,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ButtonChangeRes);
-            this.Controls.Add(this.LabelDisplayScaling);
             this.Controls.Add(this.LabelDisplayResolution);
             this.Controls.Add(this.LabelNativeResolution);
             this.Controls.Add(this.labelFooter);
@@ -173,7 +161,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToggleTheme;
         private System.Windows.Forms.Label LabelNativeResolution;
         private System.Windows.Forms.Label LabelDisplayResolution;
-        private System.Windows.Forms.Label LabelDisplayScaling;
         private System.Windows.Forms.Button ButtonChangeRes;
     }
 }
