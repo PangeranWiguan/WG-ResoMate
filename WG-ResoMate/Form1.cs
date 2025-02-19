@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace WG_ResoMate
 {
@@ -201,6 +202,17 @@ namespace WG_ResoMate
             // Save the preference
             Properties.Settings.Default.IsDarkMode = isDarkMode;
             Properties.Settings.Default.Save();
+
+            ShowToastNotification("Hello!", "This is a toast notification.");
+        }
+
+        private void ShowToastNotification(string title, string message)
+        {
+            // Create a toast notification
+            new ToastContentBuilder()
+                .AddText(title)
+                .AddText(message)
+                .Show();
         }
 
         // Import necessary Windows API functions for changing display settings
