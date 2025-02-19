@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WG_ResoMate
 {
@@ -12,7 +13,8 @@ namespace WG_ResoMate
         private const int WM_DISPLAYCHANGE = 0x007E;
 
         private bool isDarkMode = false; // Track the current theme state
-        private ToolTip toolTip = new ToolTip(); // Tooltip for menu item
+        // Use the fully qualified name to avoid ambiguity
+        private System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
 
         // Constructor for the form
         public Form1()
@@ -53,6 +55,10 @@ namespace WG_ResoMate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ToolStripMenuItemAbout.ToolTipText = "About WG-ResoMate";
+            // Debugging output
+            Console.WriteLine($"Tooltip set to: {ToolStripMenuItemAbout.ToolTipText}");
+
             // Load the saved theme preference
             isDarkMode = Properties.Settings.Default.IsDarkMode;
 
@@ -69,6 +75,12 @@ namespace WG_ResoMate
                 ToggleTheme.Text = "Switch to Dark Mode";
                 ToggleTheme.ToolTipText = "Switch to Dark Mode";
             }
+
+            // Debugging output
+            Console.WriteLine($"Tooltip set to: {ToggleTheme.ToolTipText}");
+
+            //Tool Tip for Change Rest Button)
+            toolTip.SetToolTip(ButtonChangeRes, "Click this button to change your display resolution immediately.");
 
             // Initialize display information on form load
             RefreshDisplayInfo();
@@ -177,13 +189,11 @@ namespace WG_ResoMate
             {
                 ThemeManager.ApplyDarkMode(this); // Apply to the entire form
                 ToggleTheme.Text = "Switch to Light Mode";
-                ToggleTheme.ToolTipText = "Switch to Light Mode";
             }
             else
             {
                 ThemeManager.ApplyLightMode(this); // Apply to the entire form
                 ToggleTheme.Text = "Switch to Dark Mode";
-                ToggleTheme.ToolTipText = "Switch to Dark Mode";
             }
 
             // Save the preference
