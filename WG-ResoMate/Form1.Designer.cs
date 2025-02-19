@@ -99,7 +99,7 @@
             // ButtonChangeRes
             // 
             this.ButtonChangeRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonChangeRes.Location = new System.Drawing.Point(293, 131);
+            this.ButtonChangeRes.Location = new System.Drawing.Point(24, 137);
             this.ButtonChangeRes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonChangeRes.Name = "ButtonChangeRes";
             this.ButtonChangeRes.Size = new System.Drawing.Size(267, 150);
@@ -120,7 +120,7 @@
             this.Controls.Add(this.MenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "WG-ResoMate";
             this.Load += new System.EventHandler(this.Form1_Load);
