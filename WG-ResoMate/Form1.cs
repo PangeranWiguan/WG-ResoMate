@@ -88,7 +88,6 @@ namespace WG_ResoMate
             // Initialize display information on form load
             RefreshDisplayInfo();
 
-            
         }
 
         /// <summary>
