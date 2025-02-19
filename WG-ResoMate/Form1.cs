@@ -55,9 +55,18 @@ namespace WG_ResoMate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Dynamically set the footer text
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            labelFooter.Text = $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved";
+
+            // Tool Tip for Menu Strip Item
             ToolStripMenuItemAbout.ToolTipText = "About WG-ResoMate";
-            // Debugging output
-            Console.WriteLine($"Tooltip set to: {ToolStripMenuItemAbout.ToolTipText}");
+            
+            // Tool Tip for label.
+            toolTip.SetToolTip(ButtonChangeRes, "Click this button to change your display resolution immediately.");
+            toolTip.SetToolTip(LabelNativeResolution, "Shows your display native resolution. The value can be different from your set display resolution and it is fine.");
+            toolTip.SetToolTip(LabelDisplayResolution, "This is what your current display resolution set to.");
+            toolTip.SetToolTip(labelFooter, $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved");
 
             // Load the saved theme preference
             isDarkMode = Properties.Settings.Default.IsDarkMode;
@@ -76,18 +85,10 @@ namespace WG_ResoMate
                 ToggleTheme.ToolTipText = "Switch to Dark Mode";
             }
 
-            // Debugging output
-            Console.WriteLine($"Tooltip set to: {ToggleTheme.ToolTipText}");
-
-            //Tool Tip for Change Rest Button)
-            toolTip.SetToolTip(ButtonChangeRes, "Click this button to change your display resolution immediately.");
-
             // Initialize display information on form load
             RefreshDisplayInfo();
 
-            // Dynamically set the footer text
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            labelFooter.Text = $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved";
+            
         }
 
         /// <summary>
