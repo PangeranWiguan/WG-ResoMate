@@ -34,5 +34,17 @@ namespace WG_ResoMate.Properties {
                 this["IsDarkMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoCloseOnResolutionChange {
+            get {
+                return ((bool)(this["AutoCloseOnResolutionChange"]));
+            }
+            set {
+                this["AutoCloseOnResolutionChange"] = value;
+            }
+        }
     }
 }

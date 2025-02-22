@@ -36,6 +36,7 @@
             this.LabelNativeResolution = new System.Windows.Forms.Label();
             this.LabelDisplayResolution = new System.Windows.Forms.Label();
             this.ButtonChangeRes = new System.Windows.Forms.Button();
+            this.ToggleAutoClose = new System.Windows.Forms.CheckBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,21 +59,21 @@
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.MenuStrip.ShowItemToolTips = true;
-            this.MenuStrip.Size = new System.Drawing.Size(1067, 28);
+            this.MenuStrip.Size = new System.Drawing.Size(1067, 30);
             this.MenuStrip.TabIndex = 3;
             this.MenuStrip.Text = "Main Menu";
             // 
             // ToolStripMenuItemAbout
             // 
             this.ToolStripMenuItemAbout.Name = "ToolStripMenuItemAbout";
-            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(64, 24);
+            this.ToolStripMenuItemAbout.Size = new System.Drawing.Size(64, 26);
             this.ToolStripMenuItemAbout.Text = "About";
             this.ToolStripMenuItemAbout.Click += new System.EventHandler(this.ToolStripMenuItemAbout_Click);
             // 
             // ToggleTheme
             // 
             this.ToggleTheme.Name = "ToggleTheme";
-            this.ToggleTheme.Size = new System.Drawing.Size(118, 24);
+            this.ToggleTheme.Size = new System.Drawing.Size(118, 26);
             this.ToggleTheme.Text = "Toggle Theme";
             this.ToggleTheme.Click += new System.EventHandler(this.ToggleTheme_Click);
             // 
@@ -99,7 +100,7 @@
             // ButtonChangeRes
             // 
             this.ButtonChangeRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonChangeRes.Location = new System.Drawing.Point(24, 137);
+            this.ButtonChangeRes.Location = new System.Drawing.Point(24, 216);
             this.ButtonChangeRes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonChangeRes.Name = "ButtonChangeRes";
             this.ButtonChangeRes.Size = new System.Drawing.Size(267, 150);
@@ -108,11 +109,24 @@
             this.ButtonChangeRes.UseVisualStyleBackColor = true;
             this.ButtonChangeRes.Click += new System.EventHandler(this.ButtonChangeRes_Click);
             // 
+            // ToggleAutoClose
+            // 
+            this.ToggleAutoClose.AutoSize = true;
+            this.ToggleAutoClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToggleAutoClose.Location = new System.Drawing.Point(19, 151);
+            this.ToggleAutoClose.Name = "ToggleAutoClose";
+            this.ToggleAutoClose.Size = new System.Drawing.Size(212, 29);
+            this.ToggleAutoClose.TabIndex = 8;
+            this.ToggleAutoClose.Text = "Auto Close Disabled";
+            this.ToggleAutoClose.UseVisualStyleBackColor = true;
+            this.ToggleAutoClose.CheckedChanged += new System.EventHandler(this.ToggleAutoClose_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.ToggleAutoClose);
             this.Controls.Add(this.ButtonChangeRes);
             this.Controls.Add(this.LabelDisplayResolution);
             this.Controls.Add(this.LabelNativeResolution);
@@ -139,6 +153,7 @@
         private System.Windows.Forms.Label LabelNativeResolution;
         private System.Windows.Forms.Label LabelDisplayResolution;
         private System.Windows.Forms.Button ButtonChangeRes;
+        private System.Windows.Forms.CheckBox ToggleAutoClose;
     }
 }
 

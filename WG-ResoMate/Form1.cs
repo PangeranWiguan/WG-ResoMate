@@ -22,6 +22,7 @@ namespace WG_ResoMate
         public Form1()
         {
             InitializeComponent();
+            this.KeyDown += Form1_KeyDown; // Link the KeyDown event
         }
 
         /// <summary>
@@ -57,6 +58,9 @@ namespace WG_ResoMate
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Toogle Auto Close Styling
+            StyleToggleSwitch(ToggleAutoClose);
+
             // Dynamically set the footer text
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             labelFooter.Text = $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved";
@@ -65,7 +69,7 @@ namespace WG_ResoMate
             ToolStripMenuItemAbout.ToolTipText = "About WG-ResoMate";
             
             // Tool Tip for label.
-            toolTip.SetToolTip(ButtonChangeRes, "Click this button to change your display resolution immediately.");
+            toolTip.SetToolTip(ButtonChangeRes, "Click this button to change your display resolution immediately. Shortcut: Ctrl + C");
             toolTip.SetToolTip(LabelNativeResolution, "Shows your display native resolution. The value can be different from your set display resolution and it is fine.");
             toolTip.SetToolTip(LabelDisplayResolution, "This is what your current display resolution set to.");
             toolTip.SetToolTip(labelFooter, $"Version {version} - © {DateTime.Now.Year} Pangeran Wiguan. All Rights Reserved");
@@ -90,6 +94,22 @@ namespace WG_ResoMate
             // Initialize display information on form load
             RefreshDisplayInfo();
 
+            // Load the saved auto-close preference
+            ToggleAutoClose.Checked = Properties.Settings.Default.AutoCloseOnResolutionChange;
+
+            // Enable key preview to capture global key events
+            this.KeyPreview = true;
+
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Ctrl + R is pressed
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                // Trigger the resolution change button click event
+                ButtonChangeRes_Click(sender, e);
+            }
         }
 
         /// <summary>
@@ -99,18 +119,18 @@ namespace WG_ResoMate
         {
             if (currentResolution == "1920x1080")
             {
-                ButtonChangeRes.Text = "Set to 4K Resolution\n(3840x2160 pixels)";
+                ButtonChangeRes.Text = "Set to 4K Resolution\n(3840x2160 pixels)\nShortcut : Ctrl + C";
                 ButtonChangeRes.Tag = "4K"; // Store target resolution in Tag
             }
             else if (currentResolution == "3840x2160")
             {
-                ButtonChangeRes.Text = "Set to 1080p Resolution\n(1920x1080 pixels)";
+                ButtonChangeRes.Text = "Set to 1080p Resolution\n(1920x1080 pixels)\nShortcut : Ctrl + C";
                 ButtonChangeRes.Tag = "1080p";
             }
             else
             {
                 // Default value. After setting to 1080p even from 2K res, it will have the option to change to 4K.
-                ButtonChangeRes.Text = "Set to 1080p Resolution\n(1920x1080 pixels)";
+                ButtonChangeRes.Text = "Set to 1080p Resolution\n(1920x1080 pixels)\nShortcut : Ctrl + C";
                 ButtonChangeRes.Tag = "1080p";
             }
         }
@@ -167,6 +187,12 @@ namespace WG_ResoMate
             // Update the current resolution label
             var currentResolution = DisplayInfo.GetCurrentResolution();
             LabelDisplayResolution.Text = $"Current Resolution: {currentResolution}";
+
+            // Check if auto-close is enabled
+            if (Properties.Settings.Default.AutoCloseOnResolutionChange)
+            {
+                this.Close(); // Close the application
+            }
         }
 
         /// <summary>
@@ -216,6 +242,36 @@ namespace WG_ResoMate
                 .AddText(title) // Title of the notification
                 .AddText(message) // Message body (limited to 2 lines)
                 .Show(); // Display the notification
+        }
+
+        // Styling the check box for Toogle Auto Close
+        // Make it look like Toggle Switch
+        private void StyleToggleSwitch(CheckBox toggle)
+        {
+            toggle.Appearance = Appearance.Button; // Make it look like a button
+            toggle.BackColor = toggle.Checked ? Color.Green : Color.Gray; // Change color based on state
+            toggle.TextAlign = ContentAlignment.MiddleCenter; // Center the text
+            toggle.FlatStyle = FlatStyle.Flat; // Flat style for a cleaner look
+            toggle.FlatAppearance.BorderSize = 0; // Remove border
+            
+            // Update the label text and font color based on the toggle state
+            toggle.Text = toggle.Checked ? "Auto Close App Enabled" : "Auto Close App Disabled";
+            toggle.ForeColor = toggle.Checked ? Color.Black : Color.White; // Set font color dynamically
+
+            // Update the tooltip text based on the toggle state
+            string toolTipText = toggle.Checked
+                ? "Auto Close Enabled: The application will close automatically after changing the resolution."
+                : "Auto Close Disabled: The application will remain open after changing the resolution.";
+            toolTip.SetToolTip(toggle, toolTipText);
+        }
+
+        private void ToggleAutoClose_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoCloseOnResolutionChange = ToggleAutoClose.Checked;
+            Properties.Settings.Default.Save();
+
+            // Update the appearance
+            StyleToggleSwitch(ToggleAutoClose);
         }
 
         // Import necessary Windows API functions for changing display settings
@@ -270,5 +326,6 @@ namespace WG_ResoMate
             public int dmPanningWidth; // Panning width
             public int dmPanningHeight; // Panning height
         }
+
     }
 }
